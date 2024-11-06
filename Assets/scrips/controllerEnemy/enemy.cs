@@ -18,7 +18,6 @@ public class enemy : MonoBehaviour
     Coroutine move;
     bool checkDead = false;
     bool checkMove = false;
-    [SerializeField] GameObject deadEnemy;
     void Start()
     {
         nowHpEnemy = maxHpEnemy;
@@ -38,12 +37,11 @@ public class enemy : MonoBehaviour
         {
             nowHpEnemy = 0;
             healthBar.hpEnemys(nowHpEnemy, maxHpEnemy);
-            animator.SetBool("checkDead", false);
             checkDead = true;
+            animator.SetBool("checkDead", false);
             if (checkDead == true)
             {
-                Instantiate(deadEnemy, transform.position, Quaternion.identity);
-                Destroy(this.gameObject, 1.5f);
+                Destroy(this.gameObject, 0.3f);
             }
 
         }

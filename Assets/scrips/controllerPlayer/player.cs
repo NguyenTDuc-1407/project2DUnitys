@@ -8,8 +8,10 @@ public class player : MonoBehaviour
     [SerializeField] int nowHp;
     [SerializeField] health healthBar;
     public float moveSpeed = 5f;
+    bool checkDead = false;
     Vector3 moveInput;
     [SerializeField] Animator animator;
+    [SerializeField]GameObject weapon;
     void Start()
     {
         nowHp = maxHp;
@@ -24,6 +26,13 @@ public class player : MonoBehaviour
         {
             nowHp = 0;
             healthBar.updateBar(nowHp, maxHp);
+            checkDead = true;
+            if (checkDead == true)
+            animator.SetBool("checkDead", false);
+            {
+                Destroy(weapon,0);
+                Destroy(this.gameObject, 0.5f);
+            }
         }
         healthBar.updateBar(nowHp, maxHp);
 
