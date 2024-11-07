@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class timer : MonoBehaviour
+public class Timer : MonoBehaviour
 {
-    public TextMeshProUGUI textTimer;
+    public TimeUi timeUi;
     int gameMode = 0;
     int time;
     void Start()
     {
-        gameMode = PlayerPrefs.GetInt("gameMode");
         StartCoroutine(StartTimer());
     }
 
@@ -18,7 +17,7 @@ public class timer : MonoBehaviour
     {
         int showTimer = 0;
         int maxTimer = 0;
-        if (gameMode == 0) maxTimer = 300;
+        if (gameMode == 0) { maxTimer = 300; }
         int second, minute;
         while (true)
         {
@@ -35,10 +34,9 @@ public class timer : MonoBehaviour
             {
                 showTimer = time;
             }
-
             second = showTimer % 60;
             minute = (showTimer / 60) % 60;
-            textTimer.text = minute.ToString() + ":" + second.ToString();
+            timeUi.TimeGame(minute, second);
             yield return new WaitForSeconds(1f);
         }
     }

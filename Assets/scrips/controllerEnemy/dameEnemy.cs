@@ -11,7 +11,7 @@ public class dameEnemy : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             int damage = Inputdamage;
-            other.GetComponent<enemy>().takeDamageEnemy(damage);
+            other.GetComponent<Enemy>().takeDamageEnemy(damage);
         }
     }
 }

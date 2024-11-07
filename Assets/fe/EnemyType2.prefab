@@ -252,6 +252,10 @@ MonoBehaviour:
   nextWpDis: 0.3
   roaming: 1
   animator: {fileID: 0}
+  enemyShoot: 1
+  bulletEnemy: {fileID: 2996641813985329597, guid: 286f02365a67391438621784cb61e886, type: 3}
+  bulletSpeed: 6
+  timeBtwFire: 1.5
 --- !u!114 &2204066985464075105
 MonoBehaviour:
   m_ObjectHideFlags: 0

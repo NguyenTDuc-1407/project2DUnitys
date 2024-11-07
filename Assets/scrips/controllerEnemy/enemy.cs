@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [SerializeField] int maxHpEnemy;
     [SerializeField] int nowHpEnemy;
@@ -16,6 +15,13 @@ public class enemy : MonoBehaviour
     [SerializeField] bool roaming = true;
     [SerializeField] Animator animator;
     Coroutine move;
+
+    public bool enemyShoot = false;
+    public GameObject bulletEnemy;
+
+    public float bulletSpeed;
+    public float timeBtwFire;
+    private float coolDown;
     bool checkDead = false;
     bool checkMove = false;
     void Start()
@@ -28,6 +34,22 @@ public class enemy : MonoBehaviour
     private void Update()
     {
         checkMove = checkDead;
+        coolDown -= Time.deltaTime;
+        if (coolDown < 0 && enemyShoot == true)
+        {
+            coolDown = timeBtwFire;
+            enemyFire();
+        }
+    }
+
+    void enemyFire()
+    {
+        var buttelTmp = Instantiate(bulletEnemy, transform.position, Quaternion.identity);
+        Rigidbody2D rb = buttelTmp.GetComponent<Rigidbody2D>();
+        Vector3 playPos = FindObjectOfType<player>().transform.position;
+        Vector3 direc = playPos - transform.position;
+        rb.AddForce(direc.normalized * bulletSpeed, ForceMode2D.Impulse);
+
     }
     public void takeDamageEnemy(int damage)
     {
