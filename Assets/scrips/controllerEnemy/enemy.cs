@@ -5,7 +5,7 @@ using Pathfinding;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int maxHpEnemy;
-    [SerializeField] int nowHpEnemy;
+    [SerializeField]public int nowHpEnemy;
     [SerializeField] health healthBar;
     public Seeker seeker;
     public SpriteRenderer enemySR;
@@ -15,19 +15,21 @@ public class Enemy : MonoBehaviour
     [SerializeField] bool roaming = true;
     [SerializeField] Animator animator;
     Coroutine move;
-
     public bool enemyShoot = false;
     public GameObject bulletEnemy;
-
     public float bulletSpeed;
     public float timeBtwFire;
     private float coolDown;
     bool checkDead = false;
     bool checkMove = false;
+    public int currentKilled = 0;
     void Start()
     {
         nowHpEnemy = maxHpEnemy;
-        healthBar.hpEnemys(nowHpEnemy, maxHpEnemy);
+        if (healthBar != null)
+        {
+            healthBar.hpEnemys(nowHpEnemy, maxHpEnemy);
+        }
         animator = GetComponent<Animator>();
         InvokeRepeating("caculatePath", 0f, 0.5f);
     }
@@ -46,7 +48,7 @@ public class Enemy : MonoBehaviour
     {
         var buttelTmp = Instantiate(bulletEnemy, transform.position, Quaternion.identity);
         Rigidbody2D rb = buttelTmp.GetComponent<Rigidbody2D>();
-        Vector3 playPos = FindObjectOfType<player>().transform.position;
+        Vector3 playPos = FindObjectOfType<Player>().transform.position;
         Vector3 direc = playPos - transform.position;
         rb.AddForce(direc.normalized * bulletSpeed, ForceMode2D.Impulse);
 
@@ -54,15 +56,19 @@ public class Enemy : MonoBehaviour
     public void takeDamageEnemy(int damage)
     {
         nowHpEnemy = nowHpEnemy - damage;
-        healthBar.hpEnemys(nowHpEnemy, maxHpEnemy);
+        if (healthBar != null)
+        {
+            healthBar.hpEnemys(nowHpEnemy, maxHpEnemy);
+
+        }
         if (nowHpEnemy <= 0)
         {
             nowHpEnemy = 0;
-            healthBar.hpEnemys(nowHpEnemy, maxHpEnemy);
             checkDead = true;
             animator.SetBool("checkDead", false);
             if (checkDead == true)
             {
+                FindObjectOfType<Kill>().UpdateKill();
                 Destroy(this.gameObject, 0.3f);
             }
 
@@ -87,7 +93,7 @@ public class Enemy : MonoBehaviour
     //location player
     Vector2 findTarget()
     {
-        Vector3 playPos = FindObjectOfType<player>().transform.position;
+        Vector3 playPos = FindObjectOfType<Player>().transform.position;
         if (roaming == true)
         {
             return (Vector2)playPos + (Random.Range(10f, 50f) * new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)).normalized);
@@ -143,4 +149,9 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
     }
+    //     public void UpdateKill()
+    // {
+    //     currentKilled++;
+    //     KillUi.UpdateKilled(currentKilled);
+    // }
 }

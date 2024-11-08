@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class damePlayer : MonoBehaviour
 {
-    player playerr;
+    Player playerr;
     [SerializeField] int minDamage;
     [SerializeField] int maxDamage;
 
@@ -12,7 +12,7 @@ public class damePlayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerr = other.GetComponent<player>();
+            playerr = other.GetComponent<Player>();
             InvokeRepeating("damagePlayer", 0, 0.3f);
         }
     }

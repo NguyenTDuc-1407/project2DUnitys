@@ -13,5 +13,7 @@ public class menuStart : MonoBehaviour
     {
         Application.Quit();
     }
-
+    public void gameRestart(){
+        SceneManager.LoadScene(0);
+    }
 }

@@ -2,47 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    [SerializeField] int maxHp;
-    [SerializeField] int nowHp;
-    [SerializeField] health healthBar;
     public float moveSpeed = 5f;
     bool checkDead = false;
     Vector3 moveInput;
+    [SerializeField]public int playerHp;
     [SerializeField] Animator animator;
-    [SerializeField]GameObject weapon;
+    [SerializeField] GameObject weapon;
     void Start()
     {
-        nowHp = maxHp;
-        healthBar.updateBar(nowHp, maxHp);
         animator = GetComponent<Animator>();
     }
-
     public void takeDamage(int damage)
     {
-        nowHp -= damage;
-        if (nowHp <= 0)
+        playerHp -= damage;
+        if (playerHp <= 0)
         {
-            nowHp = 0;
-            healthBar.updateBar(nowHp, maxHp);
+            playerHp = 0;
             checkDead = true;
             if (checkDead == true)
-            animator.SetBool("checkDead", false);
+                animator.SetBool("checkDead", false);
             {
-                Destroy(weapon,0);
-                Destroy(this.gameObject, 0.5f);
+                Destroy(weapon, 0);
             }
         }
-        healthBar.updateBar(nowHp, maxHp);
-
     }
-
     void Update()
     {
         movePlayer();
     }
-
     void movePlayer()
     {
         moveInput.x = Input.GetAxis("Horizontal");

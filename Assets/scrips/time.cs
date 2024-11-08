@@ -8,16 +8,14 @@ public class Timer : MonoBehaviour
     public TimeUi timeUi;
     int gameMode = 0;
     int time;
-    void Start()
-    {
-        StartCoroutine(StartTimer());
-    }
-
-    IEnumerator StartTimer()
+    int maxTimer = 0;
+    public IEnumerator StartTimer()
     {
         int showTimer = 0;
-        int maxTimer = 0;
-        if (gameMode == 0) { maxTimer = 300; }
+        if (gameMode == 0) 
+        {
+             maxTimer = 180;
+        }
         int second, minute;
         while (true)
         {
@@ -27,7 +25,7 @@ public class Timer : MonoBehaviour
                 showTimer = maxTimer - time;
                 if (time >= maxTimer)
                 {
-                    // win
+                    FindObjectOfType<ManageGame>().EndGame();
                 }
             }
             else

@@ -10,7 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     public float bulletForce;
     private float timeBtwFire;
     Rigidbody2D rb;
-    public AudioSource audio;
+    public AudioSource Audio;
     public AudioClip effectShoot;
 
     void Update()
@@ -18,8 +18,8 @@ public class NewBehaviourScript : MonoBehaviour
         timeBtwFire -= Time.deltaTime;
         if (Input.GetKeyDown("space") && timeBtwFire < 0)
         {
-            audio.clip = effectShoot;
-            audio.Play();
+            Audio.clip = effectShoot;
+            Audio.Play();
             fireButter();
         }
     }
