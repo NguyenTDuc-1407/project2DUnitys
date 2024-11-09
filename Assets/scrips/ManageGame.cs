@@ -12,13 +12,18 @@ public class ManageGame : MonoBehaviour
     public static event Action<GameState> onGameStateChanged;
     [SerializeField] Health healthBar;
     [SerializeField] KillUi KillUi;
+    [SerializeField] Exp exp;
     public Timer timerClass;
     public Player playerClass;
     public Kill killClass;
+    public ExpPlayer expPlayer;
     // public Enemy enemyClass;
     [SerializeField] public int maxHp;
     public int currentKilled = 0;
     int nowHp;
+    int startExp;
+    int maxExp;
+    int level;
     private void Awake()
     {
         if (instance == null)
@@ -37,6 +42,7 @@ public class ManageGame : MonoBehaviour
         {
             case GameState.start:
                 StartCoroutine(timerClass.StartTimer());
+                ExpPlayer();
                 PlayerHealth();
                 break;
             case GameState.damePlayer:
@@ -45,9 +51,15 @@ public class ManageGame : MonoBehaviour
             case GameState.KillEnemy:
                 KillEnemy();
                 break;
+            case GameState.expPlayer:
+                ExpPlayer();
+                break;
+            case GameState.UpLevel:
+                UpLevel();
+                break;
             // case GameState.hpEnemy:
             //     EnemyHealth();
-                // break;
+            // break;
             case GameState.end:
                 EndGame();
                 break;
@@ -70,6 +82,30 @@ public class ManageGame : MonoBehaviour
         {
             healthBar.updateBar(nowHp, maxHp);
         }
+    }
+
+    void ExpPlayer()
+    {
+        startExp = expPlayer.currentExp;
+        maxExp = expPlayer.requireExp;
+        level = expPlayer.currentLevel;
+        if (healthBar != null)
+        {
+            exp.updateExp(startExp, maxExp, level);
+        }
+    }
+    void UpLevel()
+    {
+        if (level > 1)
+        {
+            maxHp += 5;
+            nowHp = maxHp;
+            if (healthBar != null)
+            {
+                healthBar.updateBar(nowHp, maxHp);
+            }
+        }
+
     }
 
     // void EnemyHealth()
@@ -101,6 +137,8 @@ public enum GameState
     start,
     damePlayer,
     hpEnemy,
+    expPlayer,
+    UpLevel,
     KillEnemy,
     end
 

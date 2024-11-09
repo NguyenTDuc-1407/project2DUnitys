@@ -4,9 +4,9 @@ using Pathfinding;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]public int maxHpEnemy;
-    [SerializeField]public int nowHpEnemy;
-    [SerializeField]public Health healthBar;
+    [SerializeField] public int maxHpEnemy;
+    [SerializeField] public int nowHpEnemy;
+    [SerializeField] public Health healthBar;
     public Seeker seeker;
     public SpriteRenderer enemySR;
     Path path;
@@ -22,7 +22,6 @@ public class Enemy : MonoBehaviour
     private float coolDown;
     bool checkDead = false;
     bool checkMove = false;
-    public int currentKilled = 0;
     void Start()
     {
         nowHpEnemy = maxHpEnemy;
@@ -64,12 +63,14 @@ public class Enemy : MonoBehaviour
         if (nowHpEnemy <= 0)
         {
             nowHpEnemy = 0;
+            damage = 0;
             checkDead = true;
             animator.SetBool("checkDead", false);
             if (checkDead == true)
             {
+                Destroy(this.gameObject, 0.2f);
+                FindObjectOfType<ExpPlayer>().UpdateExperience(Random.Range(4,6));
                 FindObjectOfType<Kill>().UpdateKill();
-                Destroy(this.gameObject, 0.3f);
             }
 
         }

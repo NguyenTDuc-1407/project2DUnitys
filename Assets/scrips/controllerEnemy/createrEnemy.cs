@@ -8,12 +8,12 @@ public class CreaterEnemy : MonoBehaviour
     public Transform enemyPos;
     private float timeBtwEnemy;
     public float timeEnemy = 0.2f;
-    int Countenemy = 0;
+    int Countenemy = 1;
     [SerializeField] int limitEnemy;
     void Update()
     {
         timeBtwEnemy -= Time.deltaTime;
-        if (timeBtwEnemy < 0 && Countenemy < limitEnemy)
+        if (timeBtwEnemy < 0 && Countenemy <= limitEnemy)
         {
             autoEnemy();
         }
