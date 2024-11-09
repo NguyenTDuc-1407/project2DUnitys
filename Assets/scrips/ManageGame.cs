@@ -10,11 +10,12 @@ public class ManageGame : MonoBehaviour
     public static ManageGame instance;
     public GameState state;
     public static event Action<GameState> onGameStateChanged;
-    [SerializeField] health healthBar;
+    [SerializeField] Health healthBar;
     [SerializeField] KillUi KillUi;
     public Timer timerClass;
     public Player playerClass;
     public Kill killClass;
+    // public Enemy enemyClass;
     [SerializeField] public int maxHp;
     public int currentKilled = 0;
     int nowHp;
@@ -29,15 +30,6 @@ public class ManageGame : MonoBehaviour
     {
         UpdateGameState(GameState.start);
     }
-    private void Update()
-    {
-        DamagePlayer();
-        KillEnemy();
-        if (nowHp == 0)
-        {
-            UpdateGameState(GameState.end);
-        }
-    }
     public void UpdateGameState(GameState newState)
     {
         state = newState;
@@ -47,6 +39,15 @@ public class ManageGame : MonoBehaviour
                 StartCoroutine(timerClass.StartTimer());
                 PlayerHealth();
                 break;
+            case GameState.damePlayer:
+                DamagePlayer();
+                break;
+            case GameState.KillEnemy:
+                KillEnemy();
+                break;
+            // case GameState.hpEnemy:
+            //     EnemyHealth();
+                // break;
             case GameState.end:
                 EndGame();
                 break;
@@ -70,12 +71,26 @@ public class ManageGame : MonoBehaviour
             healthBar.updateBar(nowHp, maxHp);
         }
     }
+
+    // void EnemyHealth()
+    // {
+    //     enemyClass.nowHpEnemy = enemyClass.maxHpEnemy;
+    //     if (healthBar != null)
+    //     {
+    //         healthBar.hpEnemy(enemyClass.nowHpEnemy, enemyClass.maxHpEnemy);
+    //     }
+
+    // }
+    // void DamageEnemy()
+    // {
+
+    // }
     void KillEnemy()
     {
         currentKilled = killClass.currentKilled;
         KillUi.UpdateKilled(currentKilled);
     }
-   public void EndGame()
+    public void EndGame()
     {
         gameObject.SetActive(false);
         SceneManager.LoadScene(2);
@@ -84,6 +99,9 @@ public class ManageGame : MonoBehaviour
 public enum GameState
 {
     start,
+    damePlayer,
+    hpEnemy,
+    KillEnemy,
     end
 
 }

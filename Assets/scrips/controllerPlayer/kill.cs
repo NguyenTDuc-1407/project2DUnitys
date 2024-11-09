@@ -8,5 +8,6 @@ public class Kill : MonoBehaviour
     public void UpdateKill()
     {
         currentKilled++;
+        FindObjectOfType<ManageGame>().UpdateGameState(GameState.KillEnemy);
     }
 }

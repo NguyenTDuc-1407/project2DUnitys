@@ -4,9 +4,9 @@ using Pathfinding;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] int maxHpEnemy;
+    [SerializeField]public int maxHpEnemy;
     [SerializeField]public int nowHpEnemy;
-    [SerializeField] health healthBar;
+    [SerializeField]public Health healthBar;
     public Seeker seeker;
     public SpriteRenderer enemySR;
     Path path;

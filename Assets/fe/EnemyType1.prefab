@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b2d5a7d8f3dc14585701d855565e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHpEnemy: 20
+  maxHpEnemy: 25
   nowHpEnemy: 0
   healthBar: {fileID: 2257190352209476839}
   seeker: {fileID: 8112717311916089434}
@@ -207,7 +207,6 @@ MonoBehaviour:
   nextWpDis: 0.3
   roaming: 0
   animator: {fileID: 0}
-  KillUi: {fileID: 0}
   enemyShoot: 0
   bulletEnemy: {fileID: 2996641813985329597, guid: 286f02365a67391438621784cb61e886, type: 3}
   bulletSpeed: 2
@@ -288,8 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b10819c5e7097047889891fb7dde932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 3
-  maxDamage: 4
+  minDamage: 2
+  maxDamage: 3
 --- !u!1 &4479092220151179258
 GameObject:
   m_ObjectHideFlags: 0

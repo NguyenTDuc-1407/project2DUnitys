@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dameEnemy : MonoBehaviour
+public class DameEnemy : MonoBehaviour
 {
-    [SerializeField] int Inputdamage;
+    [SerializeField] int minDamage;
+    [SerializeField] int maxDamage;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
-            int damage = Inputdamage;
+            int damage = Random.Range(minDamage, maxDamage);
             other.GetComponent<Enemy>().takeDamageEnemy(damage);
         }
     }

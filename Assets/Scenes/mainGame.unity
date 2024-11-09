@@ -1069,7 +1069,7 @@ MonoBehaviour:
   enemyType1: {fileID: 4156008371104999805, guid: 47ec4998ad665fa44af923033cdf810d, type: 3}
   enemyPos: {fileID: 1000318911}
   timeEnemy: 3
-  limitEnemy: 10
+  limitEnemy: 6
 --- !u!4 &1000318911
 Transform:
   m_ObjectHideFlags: 0
@@ -1911,6 +1911,7 @@ GameObject:
   - component: {fileID: 1768592920}
   - component: {fileID: 1768592921}
   - component: {fileID: 1768592922}
+  - component: {fileID: 1768592923}
   m_Layer: 0
   m_Name: ManageGame
   m_TagString: Untagged
@@ -1978,6 +1979,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74efd4fb57bb2054395d52909f56fadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentKilled: 0
+--- !u!114 &1768592923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768592917}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b2d5a7d8f3dc14585701d855565e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHpEnemy: 35
+  nowHpEnemy: 0
+  healthBar: {fileID: 822200722}
+  seeker: {fileID: 0}
+  enemySR: {fileID: 0}
+  moveSpeed: 0
+  nextWpDis: 0
+  roaming: 1
+  animator: {fileID: 0}
+  enemyShoot: 0
+  bulletEnemy: {fileID: 0}
+  bulletSpeed: 0
+  timeBtwFire: 0
   currentKilled: 0
 --- !u!1 &1934492634
 GameObject:
@@ -2077,7 +2104,7 @@ MonoBehaviour:
   enemyType1: {fileID: 3610183926195928528, guid: c9256df49b49b634ba124d34c7d16783, type: 3}
   enemyPos: {fileID: 2094291157}
   timeEnemy: 3
-  limitEnemy: 10
+  limitEnemy: 6
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

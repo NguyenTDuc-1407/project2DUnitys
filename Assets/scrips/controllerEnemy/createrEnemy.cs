@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class createrEnemy : MonoBehaviour
+public class CreaterEnemy : MonoBehaviour
 {
     public GameObject enemyType1;
     public Transform enemyPos;

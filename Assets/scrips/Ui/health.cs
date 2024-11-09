@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class health : MonoBehaviour
+public class Health : MonoBehaviour
 {
     public Image hpBar;
     public TextMeshProUGUI hpText;

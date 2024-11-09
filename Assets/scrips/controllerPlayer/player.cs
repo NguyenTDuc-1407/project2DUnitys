@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5f;
     bool checkDead = false;
     Vector3 moveInput;
-    [SerializeField]public int playerHp;
+    [SerializeField] public int playerHp;
     [SerializeField] Animator animator;
     [SerializeField] GameObject weapon;
     void Start()
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public void takeDamage(int damage)
     {
         playerHp -= damage;
+        FindObjectOfType<ManageGame>().UpdateGameState(GameState.damePlayer);
         if (playerHp <= 0)
         {
             playerHp = 0;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
             if (checkDead == true)
                 animator.SetBool("checkDead", false);
             {
+                FindObjectOfType<ManageGame>().UpdateGameState(GameState.end);
                 Destroy(weapon, 0);
             }
         }

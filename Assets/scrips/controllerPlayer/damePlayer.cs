@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class damePlayer : MonoBehaviour
+public class DamePlayer : MonoBehaviour
 {
     Player playerr;
     [SerializeField] int minDamage;

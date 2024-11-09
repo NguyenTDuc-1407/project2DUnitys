@@ -254,8 +254,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   enemyShoot: 1
   bulletEnemy: {fileID: 2996641813985329597, guid: 286f02365a67391438621784cb61e886, type: 3}
-  bulletSpeed: 6
-  timeBtwFire: 1.5
+  bulletSpeed: 8
+  timeBtwFire: 2
+  currentKilled: 0
 --- !u!114 &2204066985464075105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,8 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b10819c5e7097047889891fb7dde932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 2
-  maxDamage: 3
+  minDamage: 3
+  maxDamage: 4
 --- !u!1 &5912170080748595163
 GameObject:
   m_ObjectHideFlags: 0
